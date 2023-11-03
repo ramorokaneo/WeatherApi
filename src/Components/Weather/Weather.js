@@ -19,8 +19,22 @@ const Weather = () => {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${api_key}`;
 
     let response = await fetch(url);
-    let data = response.json();
+    let data = await response.json();
+
+    const humidity = document.getElementsByClassName("humidity-prcent");
+    const wind = document.getElementsByClassName("wind-rate");
+    const temprature = document.getElementsByClassName("weather-temp");
+    const location = document.getElementsByClassName("weather-location");
+
+
+    humidity[0].innerHTML = data.main.humidity+" %";
+    wind[0].innerHTML = data.wind.speed+" km/h";
+    temprature[0].innerHTML = data.main.temp+" degrees";
+    location[0].innerHTML = data.name;
+
   }
+
+
   return (
     <div className='container'>
         <div className="top-bar">
