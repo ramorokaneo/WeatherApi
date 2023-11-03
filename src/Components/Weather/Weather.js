@@ -7,6 +7,20 @@ import humidity from "../Assets/humidity.png";
 
 
 const Weather = () => {
+
+  let api_key = "867e3d508926f295325cf272a95e9001";
+
+  const search = async () => {
+    const element = document.getElementsByClassName("cityInput");
+    if(element[0].value==="")
+    {
+      return 0;
+    } 
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${api_key}`;
+
+    let response = await fetch(url);
+    let data = response.json();
+  }
   return (
     <div className='container'>
         <div className="top-bar">
@@ -19,7 +33,7 @@ const Weather = () => {
           <img src={cloudy} alt=''/>
         </div>
         <div className="weather-temp">24 degrees</div>
-        <div className="weather-location">Johannesburg</div>
+        <div className="weather-location">London</div>
         <div className="data-container">
           <div className="element">
             <img src={humidity} alt="" className="icon"/>
